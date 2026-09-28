@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "assessment task - unity game.slnx"
+    "dotnet.defaultSolution": "assessment task 3.slnx"
 }

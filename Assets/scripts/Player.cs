@@ -1,117 +1,134 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; //Required if we want to work with Scenes
 
-
-
 public class Player : MonoBehaviour
 {
+    // Animation state values. These must match the conditions on your AnyState transitions.
+    private const int STATE_IDLE = 0;
+    private const int STATE_RUN = 1;
+    private const int STATE_JUMP = 2;
+    private const int STATE_FALL = 3;
+
+    // Must match the Animator parameter name EXACTLY (case-sensitive).
+    private const string ANIM_PARAM = "aniState";
+
     public float speed = 150f; //Stores player speed as a float
     public Vector2 maxVelocity = new Vector2(60, 100); //Stores player velocity (60x, 100y)
-    public float jetSpeed = 200f; //Stores the jump speed
-    public bool standing; //Identifies whether the player is standing or not (True/False)
-    public float standingThreshold = 4f; //Stores a variable to check if the player is standing on the ground
+    public float jumpVelocity = 12f; //Upward speed of a jump. Raise for a higher jump, lower for a lower one
+    public bool standing; //True while the player is touching ground (watch this tick in Play mode)
     public float airSpeedMultiplier = .3f; //Multiplies the air speed of the player
+    public float groundCheckDistance = 0.1f; //How far below the feet to look for ground
+    public bool spriteFacesLeft = false; //Tick this if your sprite art faces LEFT (fixes "walking backwards")
+    public CapsuleCollider2D alive; //Creates a variable to check if the player is alive
 
     private Rigidbody2D body2D; //Creates a variable for the RigidBody2D component
     private SpriteRenderer renderer2D; //Creates a variable to render the sprite
     private PlayerController controller; //Creates a variable for the controller (created in a separate script)
     private Animator animator; //Creates a variable to work with the Player animations
-    public CapsuleCollider2D alive; //Creates a variable to check if the player is alive
-    private bool isJumping = false;
-    private bool canJump = false;
+    private AudioSource audioData;
+    private Collider2D col;
 
-    AudioSource audioData;
-    
-  /*//Starts before the first frame. Gets the RigidBody2D, SpriteRenderer, PlayerController 
-  and Animator from the Player sprite and stores them in relevant variables*/
-    void Start() 
+    private bool isJumping = false;
+    private float jumpLockTimer = 0f; //Short lock after a jump so it can't count as "landed" immediately
+
+    private ContactFilter2D groundFilter;
+    private readonly RaycastHit2D[] hitBuffer = new RaycastHit2D[8];
+
+    void Start()
     {
         body2D = GetComponent<Rigidbody2D>();
         renderer2D = GetComponent<SpriteRenderer>();
         controller = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         audioData = GetComponent<AudioSource>();
+        col = GetComponent<Collider2D>();
 
-        
+        // Ground check ignores trigger colliders and respects the physics layer matrix
+        groundFilter = new ContactFilter2D();
+        groundFilter.useTriggers = false;
+        groundFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+        groundFilter.useLayerMask = true;
+    }
+
+    // Looks just below the player's collider for a surface that faces upward.
+    // Works even when the Rigidbody is asleep, and needs no tags.
+    private bool CheckGrounded()
+    {
+        int count = col.Cast(Vector2.down, groundFilter, hitBuffer, groundCheckDistance);
+        for (int i = 0; i < count; i++)
+        {
+            if (hitBuffer[i].normal.y > 0.5f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void Update()
     {
-        animator.SetInteger("AnimState", 0);
-        var absVelX = Mathf.Abs(body2D.linearVelocity.x); //Creates a variable to store horizontal movement velocity (x)
-        var absVelY = Mathf.Abs(body2D.linearVelocity.y); //Creates a variable to store vertical movement velocity (y)
-        var forceY = 0f; //Creates a variable to store force
+        var absVelX = Mathf.Abs(body2D.linearVelocity.x); //Horizontal movement velocity (x)
+        var velY = body2D.linearVelocity.y;               //Vertical velocity (signed)
 
-          
-        // Access the player's Y-axis position
-        float playerYPosition = transform.position.y;
-        if (playerYPosition < -150)  //Check if the player has fallen below a certain position on the screen and return to the Splash Screen if true
+        // Fell off the level: back to the Splash Screen
+        if (transform.position.y < -150)
         {
             SceneManager.LoadScene("SplashScreen");
+            return;
         }
-    
-        if (absVelY <= standingThreshold) //Check if the player is standing on the ground or not
+
+        bool grounded = CheckGrounded();
+        standing = grounded;
+
+        if (jumpLockTimer > 0f) jumpLockTimer -= Time.deltaTime;
+
+        // Landed: touching ground, not rising, and the short jump lock has expired
+        if (grounded && jumpLockTimer <= 0f && velY <= 0.1f)
         {
-            
-            standing = true;
-
-            if (controller.moving.y > 0 && !isJumping && canJump)  // Check if the player is moving upwards and allow jumping
-            {
-                //audioData.Play(0);
-                isJumping = true;
-                canJump = false; //Prevent multiple jumps until landing.
-                
-                forceY = jetSpeed * controller.moving.y;
-                animator.SetInteger("AnimState", 2);
-                
-
-                
-            }
-            else if (absVelY == 0 && !standing) //Check if the player is not moving vertically and set the animation state accordingly
-            {
-               animator.SetInteger("AnimState", 2);
-            }
-            
+            isJumping = false;
         }
-        else
+
+        // Jump: only from the ground, once per jump
+        if (grounded && !isJumping && controller.moving.y > 0)
         {
-            animator.SetInteger("AnimState", 2);
-            standing = false;
+            //audioData.Play(0);
+            isJumping = true;
+            jumpLockTimer = 0.15f;
+            // Launch straight up by setting vertical speed directly (not affected by mass or frame rate)
+            body2D.linearVelocity = new Vector2(body2D.linearVelocity.x, jumpVelocity);
         }
 
         var forceX = 0f;
 
         if (controller.moving.x != 0) //Check if the player is moving horizontally
         {
-            if (absVelX < maxVelocity.x) //Check if the player's horizontal velocity is within limits and adjust force accordingly
+            if (absVelX < maxVelocity.x) //Only push while under the speed limit
             {
                 var newSpeed = speed * controller.moving.x;
-
-                forceX = standing ? newSpeed : (newSpeed * airSpeedMultiplier);
-
-                renderer2D.flipX = forceX < 0;
+                forceX = grounded ? newSpeed : (newSpeed * airSpeedMultiplier);
             }
 
-            animator.SetInteger("AnimState", 1); //Set the animation state for horizontal movement
+            bool movingLeft = controller.moving.x < 0;
+            renderer2D.flipX = spriteFacesLeft ? !movingLeft : movingLeft;
         }
-      
 
-        body2D.AddForce(new Vector2(forceX, forceY)); //Apply the calculated forces to the player's Rigidbody2D
-    }
+        body2D.AddForce(new Vector2(forceX, 0f)); //Apply the horizontal force to the player's Rigidbody2D
 
-    
-    void OnCollisionEnter2D(Collision2D collision) //Function to enable jumping again after landing.
-    {
-        if (collision.gameObject.CompareTag("Ground"))
+        // ---- Animation: pick ONE state per frame and set it once ----
+        int state;
+        if (!grounded || isJumping)
         {
-            isJumping = false;
-            canJump = true;
+            state = velY > 0f ? STATE_JUMP : STATE_FALL; //Going up = jump, going down = fall
         }
+        else if (controller.moving.x != 0)
+        {
+            state = STATE_RUN;
+        }
+        else
+        {
+            state = STATE_IDLE;
+        }
+
+        animator.SetInteger(ANIM_PARAM, state);
     }
-
-
-
-
 }

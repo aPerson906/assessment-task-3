@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 16ac654cf65e84b26b02c848f00916c3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7062999825656500903
+    second: child enemy_0
+  - first:
+      213: 6166275789030917358
+    second: child enemy_1
+  - first:
+      213: 3382117935354391645
+    second: child enemy_2
+  - first:
+      213: -951602661640854418
+    second: child enemy_3
+  - first:
+      213: -5777906509060544316
+    second: child enemy_4
+  - first:
+      213: 8150803006315162988
+    second: child enemy_5
+  - first:
+      213: -3140431772216825303
+    second: child enemy_6
+  - first:
+      213: 68434668474721696
+    second: child enemy_7
+  - first:
+      213: 145173168388767364
+    second: child enemy_8
+  - first:
+      213: -8134002529600892363
+    second: child enemy_9
+  - first:
+      213: -7928475402667922801
+    second: child enemy_10
+  - first:
+      213: -6528748290783463062
+    second: child enemy_11
+  - first:
+      213: 209081445755532695
+    second: child enemy_12
+  - first:
+      213: -155622307671691241
+    second: child enemy_13
+  - first:
+      213: -7455836339065968540
+    second: child enemy_14
+  - first:
+      213: 8877884014376859312
+    second: child enemy_15
+  - first:
+      213: 5269334490919266538
+    second: child enemy_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: child enemy_0
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 5823
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d2917741f2bfd90800000000000000
+      internalID: -7062999825656500903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_1
+      rect:
+        serializedVersion: 2
+        x: 2239
+        y: 5727
+        width: 386
+        height: 578
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee48748e823039550800000000000000
+      internalID: 6166275789030917358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_2
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 5695
+        width: 386
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ca64dc752bfee20800000000000000
+      internalID: 3382117935354391645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 4063
+        width: 386
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e64a499cb6a3bc2f0800000000000000
+      internalID: -951602661640854418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_4
+      rect:
+        serializedVersion: 2
+        x: 2239
+        y: 4031
+        width: 386
+        height: 674
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8670684a0c0dfa0800000000000000
+      internalID: -5777906509060544316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_5
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 3999
+        width: 386
+        height: 706
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6de99146287d1170800000000000000
+      internalID: 8150803006315162988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_6
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 2367
+        width: 386
+        height: 738
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a6aaf11f1fa64d0800000000000000
+      internalID: -3140431772216825303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_7
+      rect:
+        serializedVersion: 2
+        x: 2239
+        y: 2623
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5e1c8e7f023f000800000000000000
+      internalID: 68434668474721696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_8
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 2623
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48efabc3a32c30200800000000000000
+      internalID: 145173168388767364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_9
+      rect:
+        serializedVersion: 2
+        x: 2303
+        y: 2335
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532920d8bc73e1f80800000000000000
+      internalID: -8134002529600892363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_10
+      rect:
+        serializedVersion: 2
+        x: 4351
+        y: 2303
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8a6e8dc0a568f190800000000000000
+      internalID: -7928475402667922801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_11
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1023
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a69b9e3350a3565a0800000000000000
+      internalID: -6528748290783463062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_12
+      rect:
+        serializedVersion: 2
+        x: 2239
+        y: 1023
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7953267977ec6e200800000000000000
+      internalID: 209081445755532695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_13
+      rect:
+        serializedVersion: 2
+        x: 4287
+        y: 1023
+        width: 386
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7103a10f55e17ddf0800000000000000
+      internalID: -155622307671691241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_14
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 671
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46826823a5c878890800000000000000
+      internalID: -7455836339065968540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_15
+      rect:
+        serializedVersion: 2
+        x: 2303
+        y: 639
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b63d0a5974943b70800000000000000
+      internalID: 8877884014376859312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child enemy_16
+      rect:
+        serializedVersion: 2
+        x: 4351
+        y: 607
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8e4f52dcf602940800000000000000
+      internalID: 5269334490919266538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      child enemy_0: -7062999825656500903
+      child enemy_1: 6166275789030917358
+      child enemy_10: -7928475402667922801
+      child enemy_11: -6528748290783463062
+      child enemy_12: 209081445755532695
+      child enemy_13: -155622307671691241
+      child enemy_14: -7455836339065968540
+      child enemy_15: 8877884014376859312
+      child enemy_16: 5269334490919266538
+      child enemy_2: 3382117935354391645
+      child enemy_3: -951602661640854418
+      child enemy_4: -5777906509060544316
+      child enemy_5: 8150803006315162988
+      child enemy_6: -3140431772216825303
+      child enemy_7: 68434668474721696
+      child enemy_8: 145173168388767364
+      child enemy_9: -8134002529600892363
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

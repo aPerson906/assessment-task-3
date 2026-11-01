@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3921644766100394111}
   - component: {fileID: 6607530465507466987}
   - component: {fileID: 7693290895441053312}
-  - component: {fileID: 5634295957596886777}
   - component: {fileID: 2094056445467158233}
+  - component: {fileID: 9092149722554187870}
   m_Layer: 0
   m_Name: trolley_boy
   m_TagString: Untagged
@@ -134,33 +134,6 @@ MonoBehaviour:
   vert: 0
   changeTime: 5
   damage: 1
---- !u!50 &5634295957596886777
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2481355338594865691}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!60 &2094056445467158233
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -301,3 +274,30 @@ PolygonCollider2D:
       - {x: 1.06, y: 1.54}
       - {x: 1.06, y: 1.02}
   m_UseDelaunayMesh: 1
+--- !u!50 &9092149722554187870
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481355338594865691}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

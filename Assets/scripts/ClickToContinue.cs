@@ -14,6 +14,6 @@ public class ClickToContinue : MonoBehaviour
 	}
 
 	void TaskOnClick(){
-		SceneManager.LoadScene("Level_1"); //Loads Level 1 if the button is clicked
+		SceneManager.LoadScene("Level 1"); //Loads Level 1 if the button is clicked
 	}
 }

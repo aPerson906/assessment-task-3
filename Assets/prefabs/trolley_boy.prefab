@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 516189608988483184}
   - component: {fileID: 3921644766100394111}
   - component: {fileID: 6607530465507466987}
-  - component: {fileID: 7693290895441053312}
   - component: {fileID: 2094056445467158233}
   - component: {fileID: 9092149722554187870}
+  - component: {fileID: 1572493069598154097}
+  - component: {fileID: 1261914972349212001}
   m_Layer: 0
   m_Name: trolley_boy
-  m_TagString: Untagged
+  m_TagString: damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,22 +119,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7693290895441053312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2481355338594865691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9984f7812e705e640bb778f2ccdefe6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  speed: 5
-  vert: 0
-  changeTime: 5
-  damage: 1
 --- !u!60 &2094056445467158233
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -301,3 +286,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &1572493069598154097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481355338594865691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8fffd22f8ef497aad0c8a01576e385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  damage: 1
+  knockbackX: 20
+  knockbackY: 10
+--- !u!114 &1261914972349212001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481355338594865691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9984f7812e705e640bb778f2ccdefe6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  speed: 5
+  vert: 0
+  changeTime: 3
+  damage: 1
+  spriteFacesLeft: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -74,12 +75,21 @@ public class PlayerController : MonoBehaviour
             }
             isInvincible = true;
             damageCooldown = timeInvincible;
-            if (amount < 0)
+            if (amount < 0 && animator != null)
             {
                 animator.SetTrigger("Hit");
             }
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+        if (UIHandler.instance != null)
+        {
+            UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+        }
+
+        // Out of health: back to the Splash Screen
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("SplashScreen");
+        }
     }
 }

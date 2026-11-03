@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0778cbb1a13864c64bb80cd768e65049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ladder
-  climbSpeed: 10
+  climbSpeed: 20
   jumpOffSpeed: 20
 --- !u!61 &915869234835107490
 BoxCollider2D:

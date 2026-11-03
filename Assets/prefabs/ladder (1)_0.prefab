@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0778cbb1a13864c64bb80cd768e65049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ladder
-  climbSpeed: 4
-  jumpOffSpeed: 6
+  climbSpeed: 20
+  jumpOffSpeed: 20

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+ 
 public class EnemyController : MonoBehaviour
 {
     public float speed = 3.0f;
@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     public bool spriteFacesLeft = false; // Tick this if your enemy art faces LEFT
     Animator animator;
     SpriteRenderer spriteRenderer;
-
+ 
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,27 +21,34 @@ public class EnemyController : MonoBehaviour
         timeLeft = changeTime;
         FaceDirection();
     }
-
+ 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 position = rb.position;
+        Vector2 position = rb != null ? rb.position : (Vector2)transform.position;
         timeLeft -= Time.fixedDeltaTime;
-
+ 
         if(vert)
         {
-            animator.SetFloat("MoveX", 0);
-            animator.SetFloat("MoveY", direction);
+            SetAnim("MoveX", 0);
+            SetAnim("MoveY", direction);
             position.y += speed * Time.fixedDeltaTime * direction;
         }
         else
         {
-            animator.SetFloat("MoveX", direction);
-            animator.SetFloat("MoveY", 0);
+            SetAnim("MoveX", direction);
+            SetAnim("MoveY", 0);
             position.x += speed * Time.fixedDeltaTime * direction;
         }
-        rb.MovePosition(position);
-
+        if (rb != null)
+        {
+            rb.MovePosition(position);
+        }
+        else
+        {
+            transform.position = position;
+        }
+ 
         // Example movement logic - replace with actual enemy behavior
         if(timeLeft <= 0)
         {
@@ -50,16 +57,25 @@ public class EnemyController : MonoBehaviour
             FaceDirection();
         }
     }
-
+ 
+    // Only sends values to the Animator if the enemy has one, so no Animator is needed
+    void SetAnim(string parameter, float value)
+    {
+        if (animator != null)
+        {
+            animator.SetFloat(parameter, value);
+        }
+    }
+ 
     // Flips the sprite so the enemy faces the way it's walking (left/right enemies only)
     void FaceDirection()
     {
         if (vert || spriteRenderer == null) return;
-
+ 
         bool movingLeft = direction < 0;
         spriteRenderer.flipX = spriteFacesLeft ? !movingLeft : movingLeft;
     }
-
+ 
     void OnCollisionEnter2D(Collision2D other)
     {
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
@@ -69,3 +85,4 @@ public class EnemyController : MonoBehaviour
         }
     }
 }
+ 

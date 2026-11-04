@@ -5,18 +5,44 @@ public class Ladder : MonoBehaviour
 {
     public float climbSpeed = 4f;    // How fast the player climbs up and down
     public float jumpOffSpeed = 6f;  // Small hop when you press Space to leave the ladder
+    public bool showDebug = true;    // Prints messages in the Console explaining why a ladder isn't working (turn off when it's fixed)
  
     // Shared by every Ladder so only one ladder can hold the player at a time
     static Ladder activeLadder;
     static float regrabUntil;
  
+    Collider2D ladderCol;
+    Collider2D playerCol;
     Rigidbody2D playerBody;
     bool playerInside;
     float climbInput;
+    float nextLogTime;
     float originalGravity;
     RigidbodyConstraints2D originalConstraints;
  
     bool isClimbing { get { return activeLadder == this; } }
+ 
+    // Clears the shared state every time Play starts
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        activeLadder = null;
+        regrabUntil = 0f;
+    }
+ 
+    void Start()
+    {
+        // Use this object's collider, or one on a child if this object doesn't have its own
+        ladderCol = GetComponent<Collider2D>();
+        if (ladderCol == null)
+        {
+            ladderCol = GetComponentInChildren<Collider2D>();
+        }
+        if (ladderCol == null)
+        {
+            Debug.LogWarning("Ladder '" + name + "' has no Collider2D, so it can't be climbed. Add a Box Collider 2D with Is Trigger ticked.", this);
+        }
+    }
  
     void OnDisable()
     {
@@ -24,27 +50,67 @@ public class Ladder : MonoBehaviour
         StopClimbing();
     }
  
-    void OnTriggerEnter2D(Collider2D other)
+    void DebugLog(string message)
     {
-        if (other.GetComponent<Player>() != null)
-        {
-            playerBody = other.attachedRigidbody;
-            playerInside = true;
-        }
+        if (!showDebug || Time.time < nextLogTime) return;
+        nextLogTime = Time.time + 1f;
+        Debug.Log("[Ladder " + name + "] " + message, this);
     }
  
-    void OnTriggerExit2D(Collider2D other)
+    // Checks if the player is overlapping this ladder directly, so it never depends on trigger events
+    bool IsPlayerOverlapping()
     {
-        if (other.GetComponent<Player>() != null)
-        {
-            playerInside = false;
-            StopClimbing();
-        }
+        if (ladderCol == null || playerCol == null) return false;
+ 
+        // Compare only X and Y (ignores depth), so a ladder at a different Z position still works
+        Bounds a = ladderCol.bounds;
+        Bounds b = playerCol.bounds;
+        return a.min.x < b.max.x && a.max.x > b.min.x
+            && a.min.y < b.max.y && a.max.y > b.min.y;
     }
  
     void Update()
     {
-        if (!playerInside) return;
+        if (ladderCol == null) return;
+ 
+        // Find the player (again if the scene was reloaded)
+        if (playerCol == null || playerBody == null)
+        {
+            Player p = Object.FindAnyObjectByType<Player>();
+            if (p == null)
+            {
+                DebugLog("PROBLEM: no object with the Player script exists in this scene.");
+                return;
+            }
+            playerCol = p.GetComponent<Collider2D>();
+            playerBody = p.GetComponent<Rigidbody2D>();
+            if (playerCol == null || playerBody == null)
+            {
+                DebugLog("PROBLEM: the Player object is missing a Collider2D or Rigidbody2D.");
+                return;
+            }
+        }
+ 
+        // Safety: if another ladder is holding the player but the player isn't on it anymore, let go
+        if (activeLadder != null && activeLadder != this && !activeLadder.IsPlayerOverlapping())
+        {
+            activeLadder.StopClimbing();
+        }
+ 
+        playerInside = IsPlayerOverlapping();
+        if (!playerInside)
+        {
+            if (showDebug && Vector2.Distance(transform.position, playerCol.bounds.center) < 4f)
+            {
+                DebugLog("Player is near but NOT touching this ladder's collider. Ladder collider covers x "
+                    + ladderCol.bounds.min.x.ToString("F1") + " to " + ladderCol.bounds.max.x.ToString("F1")
+                    + ", y " + ladderCol.bounds.min.y.ToString("F1") + " to " + ladderCol.bounds.max.y.ToString("F1")
+                    + ". Player covers x " + playerCol.bounds.min.x.ToString("F1") + " to " + playerCol.bounds.max.x.ToString("F1")
+                    + ", y " + playerCol.bounds.min.y.ToString("F1") + " to " + playerCol.bounds.max.y.ToString("F1") + ".");
+            }
+            StopClimbing();
+            return;
+        }
  
         // Old Input Manager: W/Up climbs up, S/Down climbs down
         climbInput = 0f;
@@ -57,13 +123,19 @@ public class Ladder : MonoBehaviour
             StartClimbing();
         }
  
+        if (climbInput != 0f && !isClimbing)
+        {
+            if (activeLadder != null) DebugLog("Not grabbing: another ladder (" + activeLadder.name + ") is holding the player.");
+            else if (Time.time < regrabUntil) DebugLog("Not grabbing: short cooldown after hopping off.");
+        }
+ 
         // Space to hop off the ladder
         if (isClimbing && Input.GetKeyDown("space"))
         {
             Rigidbody2D body = playerBody;
             StopClimbing();
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpOffSpeed);
-            regrabUntil = Time.time + 0.3f; // stops it from instantly grabbing the ladder again
+            regrabUntil = Time.time + 0.3f; // stops it from instantly grabbing a ladder again
         }
     }
  
@@ -100,3 +172,4 @@ public class Ladder : MonoBehaviour
         }
     }
 }
+ 

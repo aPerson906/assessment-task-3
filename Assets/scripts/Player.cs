@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         var velY = body2D.linearVelocity.y;               //Vertical velocity (signed)
 
         // Fell off the level: back to the Splash Screen
-        if (transform.position.y < -150)
+        if (transform.position.y < -300)
         {
             SceneManager.LoadScene("SplashScreen");
             return;

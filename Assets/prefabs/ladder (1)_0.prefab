@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1254018802321472263}
   - component: {fileID: 2010776981469176712}
   - component: {fileID: 9086630004855718256}
-  - component: {fileID: -3165158171219489708}
+  - component: {fileID: 5664486465323425931}
   m_Layer: 0
   m_Name: ladder (1)_0
   m_TagString: Untagged
@@ -140,7 +140,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.8, y: 9.6}
   m_EdgeRadius: 0
---- !u!114 &-3165158171219489708
+--- !u!114 &5664486465323425931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0778cbb1a13864c64bb80cd768e65049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ladder
-  climbSpeed: 20
+  climbSpeed: 15
   jumpOffSpeed: 20
